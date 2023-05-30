@@ -2,13 +2,16 @@ import { NextRequest , NextResponse } from "next/server";
 import {db} from "@vercel/postgres";
 import { error } from "console";
 import {TodosTable , Newtodos , todos , Db} from "@/lib/drizzle";
+import {sql} from "@vercel/postgres"
 
  export async function GET(request:NextRequest)
  {
-    const client = await db.connect();
+    // const client = await db.connect();
     try{
-       await client.sql`create table if not exists todos(Id serial , Tasks varchar(255));`;
-       const data = await client.sql`select * from todos` ;
+       await sql`create table if not exists todos(Id serial , Tasks varchar(255));`;
+    //    const data = await client.sql`select * from todos` ;
+        const data = await Db.select().from(TodosTable).execute();
+        console.log(data);
        return NextResponse.json({Data : data});
     
     }
