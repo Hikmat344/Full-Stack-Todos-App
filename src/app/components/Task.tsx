@@ -41,7 +41,7 @@ export const Task = async () => {
            {/* circle */}
             <div className="bg-black w-3 h-3 rounded-full mx-4 items-center" />
             {/* task */}
-            <p className="text-lg text-black font-medium">Task1</p>
+            <p className="text-lg text-black font-medium border-r border-green-600 hover:bg-green-600">Task1</p>
             </div>
             )
       })
